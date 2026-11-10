@@ -28,12 +28,13 @@ h2{font-size:clamp(1.7rem,4vw,2.4rem)}
 header{position:sticky;top:0;z-index:30;background:rgba(11,9,7,.94);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.06);padding-top:env(safe-area-inset-top,0px)}
 .hd{display:flex;align-items:center;gap:18px;padding:12px 20px}
 .nav-toggle{display:none}
-.nav-head{display:none}
+.mob-drawer{display:none}
 .nav-backdrop{display:none}
 .logo{font-family:var(--hd);font-weight:800;font-size:1.25rem;line-height:1}
 .logo small{display:block;color:var(--or);font-size:.62rem;font-family:var(--bd);letter-spacing:2px;margin-top:3px}
-nav{display:flex;gap:22px;margin:0 auto;font-size:.88rem;font-weight:500}
-nav a{color:var(--mu)}nav a:hover{color:var(--tx)}
+.desk-nav{display:flex;gap:22px;margin:0 auto;font-size:.88rem;font-weight:500}
+.desk-nav a{color:var(--mu);transition:color .2s}
+.desk-nav a:hover{color:var(--tx)}
 .hd .tools{display:flex;gap:10px;align-items:center}
 .pill{border:1px solid var(--ln);background:transparent;border-radius:999px;padding:8px 14px;font-size:.8rem;font-weight:700}
 .cartbtn{background:var(--or);border-color:var(--or);color:#fff}
@@ -136,18 +137,21 @@ input,select{width:100%;background:var(--bg);border:1px solid rgba(255,255,255,.
 .err{color:#ff6b6b;font-size:.85rem;min-height:1.2em}
 .empty{color:var(--mu);text-align:center;padding:40px 0}
 @media(max-width:860px){
+  .desk-nav{display:none}
   .nav-toggle{display:inline-flex;align-items:center;justify-content:center;background:transparent;border:1px solid var(--ln);color:var(--tx);width:40px;height:40px;border-radius:8px;padding:0;cursor:pointer;flex-shrink:0}
   .nav-toggle:active{background:rgba(255,107,0,.15);border-color:var(--or)}
   .hd{padding:10px 14px;gap:12px;justify-content:flex-start}
   .hd .logo{margin-right:auto}
   .hd .tools{margin-left:auto;gap:8px}
   .hd .tools .pill{padding:7px 11px;font-size:.76rem}
-  nav{
+  .mob-drawer{
     position:fixed;
     top:0;
     left:0;
     bottom:0;
     width:min(300px,82vw);
+    height:100%;
+    height:100dvh;
     background:#120d09;
     border-right:1px solid rgba(255,107,0,.35);
     flex-direction:column;
@@ -157,17 +161,21 @@ input,select{width:100%;background:var(--bg);border:1px solid rgba(255,255,255,.
     transform:translateX(-100%);
     transition:transform .28s cubic-bezier(.16,1,.3,1);
     margin:0;
-    box-shadow:14px 0 45px rgba(0,0,0,.85);
+    box-shadow:16px 0 50px rgba(0,0,0,.9);
     display:flex;
     -webkit-font-smoothing:antialiased;
     text-rendering:optimizeLegibility;
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
   }
-  nav.open{transform:translateX(0)}
-  .nav-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.1)}
-  .nav-head .logo{font-size:1.2rem;color:#ffffff}
-  .nav-head .x{font-size:1.8rem;color:var(--mu);background:none;border:none;cursor:pointer;padding:4px;line-height:1}
-  nav a.nl{font-size:1.05rem;font-weight:700;color:#ffffff;padding:12px 14px;border-radius:8px;border:1px solid transparent;transition:all .2s;display:block;letter-spacing:.2px}
-  nav a.nl:hover,nav a.nl:active{background:rgba(255,107,0,.15);border-color:rgba(255,107,0,.3);color:var(--or2)}
+  .mob-drawer.open{transform:translateX(0)}
+  .mob-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.1);flex-shrink:0}
+  .mob-head .logo{font-size:1.2rem;color:#ffffff}
+  .mob-head .x{font-size:1.8rem;color:var(--mu);background:none;border:none;cursor:pointer;padding:4px;line-height:1}
+  .mob-links{display:flex;flex-direction:column;gap:8px;flex:1}
+  .mob-links a{font-size:1.06rem;font-weight:700;color:#ffffff!important;padding:12px 14px;border-radius:8px;border:1px solid transparent;transition:all .2s;display:block;letter-spacing:.2px;background:rgba(255,255,255,.03)}
+  .mob-links a:hover,.mob-links a:active{background:rgba(255,107,0,.18)!important;border-color:rgba(255,107,0,.4)!important;color:var(--or2)!important}
+  .mob-foot{margin-top:auto;padding-top:16px;border-top:1px solid rgba(255,255,255,.08);flex-shrink:0}
   .nav-backdrop{position:fixed;inset:0;background:rgba(6,4,3,.72);z-index:85;display:none;backdrop-filter:blur(10px) saturate(190%) contrast(115%);-webkit-backdrop-filter:blur(10px) saturate(190%) contrast(115%);transition:opacity .25s ease}
   .nav-backdrop.show{display:block}
   .hero{padding:36px 0 30px}
@@ -208,20 +216,35 @@ input,select{width:100%;background:var(--bg);border:1px solid rgba(255,255,255,.
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
   </button>
   <a href="#top" class="logo">Classic Grills<small>&amp; RESTAURANTS</small></a>
-  <nav id="mainNav">
-    <div class="nav-head">
-      <span class="logo">Classic Grills<small>&amp; RESTAURANTS</small></span>
-      <button class="x" id="navClose" aria-label="Close menu">&times;</button>
-    </div>
+  <nav class="desk-nav">
+    <a href="#top">Home</a>
+    <a href="#menu">Menu</a>
+    <a href="#combo">Build Combo</a>
+    <a href="#story">About Us</a>
+    <a href="#locations">Pickup &amp; Hubs</a>
+  </nav>
+  <div class="tools"><button class="pill" id="mgrBtn">Manager Portal</button><button class="pill cartbtn" data-cart>🛒 <span id="cnt1">0</span></button></div>
+</div></header>
+
+<!-- Mobile Navigation Drawer & Water Refraction Backdrop at root level (z-index 90 above backdrop 85) -->
+<div class="nav-backdrop" id="navBackdrop"></div>
+<aside class="mob-drawer" id="mainNav" aria-label="Mobile Navigation">
+  <div class="mob-head">
+    <a href="#top" class="logo">Classic Grills<small>&amp; RESTAURANTS</small></a>
+    <button class="x" id="navClose" aria-label="Close menu">&times;</button>
+  </div>
+  <div class="mob-links">
     <a href="#top" class="nl">Home</a>
     <a href="#menu" class="nl">Menu</a>
     <a href="#combo" class="nl">Build Combo</a>
     <a href="#story" class="nl">About Us</a>
     <a href="#locations" class="nl">Pickup &amp; Hubs</a>
-  </nav>
-  <div class="tools"><button class="pill" id="mgrBtn">Manager Portal</button><button class="pill cartbtn" data-cart>🛒 <span id="cnt1">0</span></button></div>
-</div></header>
-<div class="nav-backdrop" id="navBackdrop"></div>
+  </div>
+  <div class="mob-foot">
+    <div style="font-size:.76rem;color:var(--mu);margin-bottom:4px;text-transform:uppercase;letter-spacing:1px;font-weight:700">Charcoal Flame Grills</div>
+    <div style="font-size:.82rem;font-weight:600;color:var(--or2)">Mokola Hill &bull; New Bodija</div>
+  </div>
+</aside>
 
 <main>
 <section class="hero"><div class="wrap">
