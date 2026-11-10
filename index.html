@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Classic Grills &amp; Restaurants | Flame-Charred Grills in Ibadan</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=DM+Sans:wght@400;500;700&display=swap">
+<style>
+:root{--bg:#0b0907;--card:#17120e;--card2:#211912;--or:#ff6b00;--or2:#ffa133;--tx:#fff5eb;--mu:#b3a495;--ln:rgba(255,107,0,.3);--hd:'Fraunces',Georgia,serif;--bd:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{background:var(--bg);color:var(--tx);font-family:var(--bd);line-height:1.55}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;color:inherit}
+:focus-visible{outline:2px solid var(--or2);outline-offset:2px}
+.wrap{max-width:1140px;margin:0 auto;padding:0 20px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:8px;font-weight:700;font-size:.9rem;border:1px solid var(--or);background:var(--or);color:#fff}
+.btn.ghost{background:transparent;color:var(--tx)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.eyebrow{color:var(--or);font-weight:700;font-size:.8rem;letter-spacing:1.5px}
+h1,h2,h3{font-family:var(--hd);line-height:1.1}
+h2{font-size:clamp(1.7rem,4vw,2.4rem)}
+.or{color:var(--or)}
+header{position:sticky;top:0;z-index:30;background:rgba(11,9,7,.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.06);padding-top:env(safe-area-inset-top,0px)}
+.hd{display:flex;align-items:center;gap:18px;padding:12px 20px;flex-wrap:wrap}
+.logo{font-family:var(--hd);font-weight:800;font-size:1.25rem;line-height:1}
+.logo small{display:block;color:var(--or);font-size:.62rem;font-family:var(--bd);letter-spacing:2px;margin-top:3px}
+nav{display:flex;gap:22px;margin:0 auto;font-size:.88rem;font-weight:500}
+nav a{color:var(--mu)}nav a:hover{color:var(--tx)}
+.hd .tools{display:flex;gap:10px;align-items:center}
+.pill{border:1px solid var(--ln);background:transparent;border-radius:999px;padding:8px 14px;font-size:.8rem;font-weight:700}
+.cartbtn{background:var(--or);border-color:var(--or);color:#fff}
+.hero{position:relative;overflow:hidden;padding:56px 0 40px}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center}
+.hero h1{font-size:clamp(2rem,5vw,3.4rem);font-weight:800;text-transform:uppercase;letter-spacing:-.5px;margin:14px 0 18px}
+.hero p{color:var(--mu);max-width:460px;margin-bottom:24px}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+.trust{display:flex;gap:26px;margin-top:34px;flex-wrap:wrap}
+.trust div{font-size:.82rem;color:var(--mu)}.trust b{display:block;color:var(--tx);font-size:.85rem}
+.plate{position:relative}
+.plate img{border-radius:50%;aspect-ratio:1;object-fit:cover;border:3px solid rgba(255,107,0,.35);box-shadow:0 0 90px rgba(255,107,0,.25)}
+section{padding:64px 0}
+.sh{text-align:center;margin-bottom:34px}.sh p{color:var(--mu);max-width:520px;margin:8px auto 0}
+.grid4{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:20px}
+.card{position:relative;background:var(--card);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:12px;display:flex;flex-direction:column}
+.card img,.card .ph{width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px}
+.ph{display:grid;place-items:center;font-size:3.4rem;background:radial-gradient(circle,#3a2412,#17120e)}
+.card h3{color:var(--or2);font-size:1.1rem;margin:12px 4px 4px}
+.card p{color:var(--mu);font-size:.85rem;margin:0 4px 12px;flex:1}
+.card .row{display:flex;justify-content:space-between;align-items:center;margin:0 4px}
+.price{font-weight:700;font-size:1.05rem}
+.add{width:42px;height:42px;border-radius:50%;border:1px solid var(--or);background:transparent;color:var(--or);font-size:1.4rem;display:grid;place-items:center;line-height:1}
+.add:hover:not(:disabled){background:var(--or);color:#fff}
+.add:disabled{opacity:.35;cursor:not-allowed}
+.tag{position:absolute;top:20px;left:20px;background:var(--or);color:#fff;font-size:.68rem;font-weight:700;padding:3px 8px;border-radius:4px}
+.sold{position:absolute;top:50%;left:50%;transform:translate(-50%,-70%) rotate(-10deg);background:#d11a1a;color:#fff;font-weight:800;font-size:.8rem;padding:6px 12px;border-radius:4px;border:2px solid #fff;white-space:nowrap;z-index:2}
+.combo{background:var(--card);border-top:1px solid var(--ln);border-bottom:1px solid var(--ln)}
+.step{margin-bottom:34px}.step h3{font-size:1.2rem;margin-bottom:4px}.step .hint{color:var(--mu);font-size:.85rem;margin-bottom:14px}
+.opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px}
+.opt{position:relative;background:var(--card2);border:2px solid transparent;border-radius:12px;padding:8px;text-align:left;display:flex;flex-direction:column;gap:8px}
+.opt img,.opt .ph{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;font-size:2.6rem}
+.opt b{font-size:.86rem;padding:0 4px;line-height:1.25}.opt small{color:var(--mu);padding:0 4px 4px;font-size:.78rem}
+.opt:hover{border-color:rgba(255,107,0,.5)}
+.opt.on{border-color:var(--or);box-shadow:0 0 0 3px rgba(255,107,0,.2)}
+.opt.on::after{content:"✓";position:absolute;top:14px;right:14px;width:24px;height:24px;border-radius:50%;background:var(--or);color:#fff;display:grid;place-items:center;font-weight:800;font-size:.85rem}
+.opt:disabled{opacity:.45;cursor:not-allowed}
+.spice .opt{flex-direction:row;align-items:center;gap:10px;padding:16px;font-size:1.6rem}.spice .opt div{display:flex;flex-direction:column}
+.spice .opt.on::after{top:50%;transform:translateY(-50%)}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;background:var(--bg);border:1px solid var(--ln);border-radius:14px;padding:16px 20px}
+.bar span{color:var(--mu);font-size:.88rem}.bar strong{font-size:1.4rem;display:block;color:var(--tx)}
+.story .wrap{display:grid;grid-template-columns:1fr 1.2fr;gap:36px;align-items:center}
+.story p{color:var(--mu);margin:14px 0 22px}
+.stats{display:flex;gap:30px;flex-wrap:wrap}.stats b{font-family:var(--hd);color:var(--or2);font-size:1.8rem;display:block}.stats span{color:var(--mu);font-size:.82rem}
+.pics{display:grid;grid-template-columns:2fr 1fr;gap:12px}.pics img{border-radius:12px;border:1px solid var(--ln);object-fit:cover;width:100%;height:100%}
+.pics .side{display:grid;gap:12px}
+.loc-sec{background:#16120E;border-top:1px solid rgba(255,107,0,.2)}
+.loc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:24px}
+.loc{background:#231B14;border:1px solid rgba(255,107,0,.35);border-radius:12px;padding:26px;display:flex;flex-direction:column}
+.loc .top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+.badge{background:rgba(255,107,0,.15);color:#FFA133;font-size:.72rem;font-weight:700;padding:3px 8px;border-radius:4px;text-transform:uppercase}
+.loc h3{font-size:1.25rem;margin-top:8px}.loc .addr{font-size:.92rem;font-weight:600;margin-bottom:4px}.loc .sub{color:#B3A495;font-size:.82rem;line-height:1.4;margin-bottom:16px}
+.loc .foot{margin-top:auto;padding-top:14px;border-top:1px solid rgba(255,255,255,.08)}
+.loc .hrs{color:#FFA133;font-size:.82rem;font-weight:600;margin-bottom:14px}
+.loc .acts{display:flex;gap:10px}.loc .acts a{flex:1;text-align:center;padding:9px;font-size:.82rem;font-weight:600;border:1px solid rgba(255,107,0,.3);border-radius:6px}
+.loc .acts a.pri{background:#FF6B00;color:#fff;font-weight:700;border-color:#FF6B00}
+footer{border-top:1px solid rgba(255,255,255,.08);padding:48px 0 24px}
+.fg{display:grid;grid-template-columns:1.3fr 1fr 1.6fr;gap:30px}
+footer h4{font-size:.8rem;letter-spacing:1.5px;margin-bottom:12px}footer li{list-style:none;color:var(--mu);font-size:.88rem;margin-bottom:8px}footer p{color:var(--mu);font-size:.88rem;margin:10px 0 16px;max-width:280px}
+.ig{display:inline-grid;place-items:center;width:40px;height:40px;border:1px solid var(--or);border-radius:50%;color:var(--or)}
+.copy{margin-top:34px;padding-top:18px;border-top:1px solid rgba(255,255,255,.08);color:var(--mu);font-size:.8rem}
+.fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:40;box-shadow:0 8px 30px rgba(255,107,0,.4);padding:14px 20px;border-radius:999px}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:50;display:none}.ov.show{display:block}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--card);z-index:60;transform:translateX(100%);transition:transform .25s;display:flex;flex-direction:column;border-left:1px solid var(--ln)}
+.drawer.show{transform:none}
+.dh{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid rgba(255,255,255,.08)}
+.x{background:none;border:none;font-size:1.6rem;color:var(--mu)}
+.db{flex:1;overflow:auto;padding:16px 20px}
+.li{display:grid;grid-template-columns:1fr auto;gap:4px 10px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:.9rem}
+.li small{grid-column:1/-1;color:var(--mu)}
+.qty{display:flex;align-items:center;gap:8px;margin-top:6px}.qty button{width:28px;height:28px;border-radius:50%;border:1px solid var(--ln);background:none}
+.df{padding:16px 20px calc(16px + env(safe-area-inset-bottom,0px));border-top:1px solid rgba(255,255,255,.08)}
+input,select{width:100%;background:var(--bg);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:10px 12px;color:var(--tx);font:inherit;margin-bottom:8px}
+.tot{display:flex;justify-content:space-between;font-weight:700;font-size:1.1rem;margin:8px 0}.fees{color:var(--mu);font-size:.8rem;margin-bottom:12px}
+.wa{width:100%;justify-content:center;background:#25D366;border-color:#25D366;color:#06210f}
+.modal{position:fixed;inset:0;z-index:70;display:none;place-items:center;padding:16px;background:rgba(0,0,0,.7)}.modal.show{display:grid}
+.mbox{background:var(--card);border:1px solid var(--ln);border-radius:14px;width:min(640px,100%);max-height:90vh;overflow:auto;padding:22px}
+.mr{display:grid;grid-template-columns:1fr 110px auto auto;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:.88rem}
+.mr input{margin:0;padding:8px}
+.mr label{display:flex;gap:6px;align-items:center;font-size:.78rem;color:var(--mu);white-space:nowrap}.mr label input{width:auto;margin:0}
+.del{background:none;border:none;color:#ff6b6b}
+.err{color:#ff6b6b;font-size:.85rem;min-height:1.2em}
+.empty{color:var(--mu);text-align:center;padding:40px 0}
+@media(max-width:860px){
+  nav{order:3;width:100%;overflow-x:auto;gap:14px;margin:0;padding-bottom:4px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  nav::-webkit-scrollbar{display:none}
+  .hd{padding:10px 16px;gap:12px}
+  .hd .tools{margin-left:auto}
+  .hero{padding:36px 0 30px}
+  .hero .wrap,.story .wrap,.fg{grid-template-columns:1fr}
+  .hero h1{font-size:clamp(1.75rem,6vw,2.6rem);margin:10px 0 14px}
+  .hero .cta{flex-direction:column;width:100%}
+  .hero .cta .btn{width:100%;justify-content:center}
+  .trust{gap:16px}
+  .plate{max-width:340px;margin:10px auto 0}
+  .seal{width:90px;height:90px;font-size:.8rem;padding:6px}
+  .seal small{font-size:.5rem;margin-top:2px}
+  .opts{grid-template-columns:repeat(2,1fr);gap:10px}
+  .opt{padding:6px;gap:6px}
+  .opt img,.opt .ph{border-radius:6px}
+  .opt b{font-size:.8rem}
+  .spice .opts{grid-template-columns:1fr;gap:8px}
+  .spice .opt{padding:12px;font-size:1.4rem}
+  .bar{flex-direction:column;align-items:stretch;gap:12px;padding:14px 16px;text-align:center}
+  .bar button{width:100%;justify-content:center}
+  .mr{grid-template-columns:1fr 90px}
+  input,select,textarea{font-size:16px!important}
+  button:active,.btn:active,.opt:active{transform:scale(.97)}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body id="top">
+<header><div class="hd">
+  <a href="#top" class="logo">Classic Grills<small>&amp; RESTAURANTS</small></a>
+  <nav><a href="#top">Home</a><a href="#menu">Menu</a><a href="#combo">Build Combo</a><a href="#story">About Us</a><a href="#locations">Contact</a></nav>
+  <div class="tools"><button class="pill" id="mgrBtn">Manager Portal</button><button class="pill cartbtn" data-cart>🛒 <span id="cnt1">0</span></button></div>
+</div></header>
+
+<main>
+<section class="hero" style="padding-top:48px"><div class="wrap">
+  <div>
+    <span class="eyebrow">— EXCEPTIONAL CUISINE —</span>
+    <h1>No app download. No chat delays. <span class="or">Just real flame-charred grills.</span></h1>
+    <p>Order straight from our kitchen to your WhatsApp. Pick your protein, sides and spice, and we start grilling.</p>
+    <div class="cta"><a class="btn" href="#menu">Order Now →</a><a class="btn ghost" href="#combo">🍽 Build Your Combo</a></div>
+    <div class="trust"><div><b>Fresh Ingredients</b>Sourced daily</div><div><b>Charcoal Flame</b>Grilled to order</div><div><b>Direct Orders</b>₦0 platform fees</div></div>
+  </div>
+  <div class="plate"><img src="images/hero.jpg" alt="Flame-grilled chicken with fries and salad"></div>
+</div></section>
+
+<section id="menu"><div class="wrap">
+  <div class="sh"><span class="eyebrow">— CHEF’S FAVORITES —</span><h2>Signature <span class="or">Collection</span></h2><p>Handpicked favorites from our grill, ready to add to your order in one tap.</p></div>
+  <div class="grid4" id="menuGrid"></div>
+</div></section>
+
+<section class="combo" id="combo"><div class="wrap">
+  <div class="sh"><span class="eyebrow">— BUILD YOUR COMBO —</span><h2>Make It <span class="or">Yours</span></h2><p>Three quick taps: protein, sides, spice.</p></div>
+  <div class="step"><h3>Step 1: Choose your protein</h3><p class="hint">The protein sets the combo price.</p><div class="opts" id="o1"></div></div>
+  <div class="step"><h3>Step 2: Choose your carb side</h3><p class="hint">Pick up to 2. Sides are included in the price.</p><div class="opts" id="o2"></div></div>
+  <div class="step spice"><h3>Step 3: Spice level</h3><div class="opts" id="o3"></div></div>
+  <div class="bar"><div><span id="sumTxt">Pick a protein to start</span><strong id="sumPrice">₦0</strong></div><button class="btn" id="addCombo" disabled>Add combo to cart</button></div>
+</div></section>
+
+<section class="story" id="story"><div class="wrap">
+  <div><span class="eyebrow">— OUR STORY —</span><h2 style="margin-top:10px">Passion in <span class="or">Every Plate</span></h2>
+  <p>At Classic Grills, we believe great food brings people together. Our kitchens grill over real charcoal and prepare each order fresh, so what reaches your table or doorstep is piping hot.</p>
+  <div class="stats"><div><b>2</b><span>Ibadan kitchens</span></div><div><b>35 min</b><span>Fast delivery</span></div><div><b>₦0</b><span>Platform fees</span></div></div></div>
+  <div class="pics"><img src="images/story.jpg" alt="Meat grilling over open charcoal flames" style="min-height:260px"><div class="side"><img src="images/table.jpg" alt="Dining table setting"><img src="images/lights.jpg" alt="Restaurant string lights at night"></div></div>
+</div></section>
+
+<!-- Multi-Branch Pickup & Delivery Hubs -->
+<section class="loc-sec" id="locations"><div class="wrap">
+  <div class="sh"><span class="eyebrow" style="font-size:.78rem;letter-spacing:2px;text-transform:uppercase">— OUR IBADAN KITCHENS</span>
+    <h2 style="font-weight:800;margin-top:8px">Pickup &amp; Fast Delivery Hubs</h2>
+    <p style="font-size:.95rem">Piping hot charcoal delivery across Bodija, Mokola, Secretariat, and UI in under 35 minutes.</p></div>
+  <div class="loc-grid">
+    <div class="loc">
+      <div class="top"><div><span class="badge">Main Kitchen &bull; High Volume</span><h3>📍 Mokola Hill Hub</h3></div><span style="font-size:1.5rem">🔥</span></div>
+      <p class="addr">43B Awolowo Road, Mokola Hill, Ibadan</p>
+      <p class="sub">Fastest dispatch for: Mokola, Total Garden, Secretariat, and UI Gate.</p>
+      <div class="foot"><div class="hrs">🕒 Open Daily: 11:30 AM – 11:00 PM</div>
+        <div class="acts"><a href="https://www.google.com/maps/search/?api=1&query=43B+Awolowo+Road+Mokola+Hill+Ibadan" target="_blank" rel="noopener">Open in Maps &nearr;</a><a class="pri" href="#menu">Order Here &rarr;</a></div></div>
+    </div>
+    <div class="loc">
+      <div class="top"><div><span class="badge">Bodija Express Hub</span><h3>📍 New Bodija Hub</h3></div><span style="font-size:1.5rem">🍗</span></div>
+      <p class="addr">No. 3B Oluyole Way, Favours Junction, New Bodija</p>
+      <p class="sub">(Near 46 Awolowo Ave, Opp. Sluggers). Serves: Old &amp; New Bodija, Ikolaba, and Agbowo.</p>
+      <div class="foot"><div class="hrs">🕒 Open Daily: 12:00 PM – 11:00 PM</div>
+        <div class="acts"><a href="https://www.google.com/maps/search/?api=1&query=Oluyole+Way+Favours+Junction+New+Bodija+Ibadan" target="_blank" rel="noopener">Open in Maps &nearr;</a><a class="pri" href="#menu">Order Here &rarr;</a></div></div>
+    </div>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <div class="fg">
+    <div><a href="#top" class="logo">Classic Grills<small>&amp; RESTAURANTS</small></a><p>Real flame-charred grills, ordered straight on WhatsApp.</p>
+      <a class="ig" href="https://www.instagram.com/classicgrills01/" target="_blank" rel="noopener" aria-label="Classic Grills on Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a></div>
+    <div><h4>QUICK LINKS</h4><ul><li><a href="#top">Home</a></li><li><a href="#menu">Menu</a></li><li><a href="#combo">Build Your Combo</a></li><li><a href="#story">About Us</a></li><li><a href="#locations">Contact</a></li></ul></div>
+    <div><h4>CONTACT US</h4><ul><li>📞 <a href="https://wa.me/2348130904927">+234 813 090 4927</a></li><li>📍 43B Awolowo Road, Mokola Hill, Ibadan</li><li>📍 No. 3B Oluyole Way, Favours Junction, New Bodija</li><li>🕒 Open daily, from 11:30 AM to 11:00 PM</li></ul></div>
+  </div>
+  <div class="copy">© 2026 Classic Grills &amp; Restaurants. All rights reserved.</div>
+</div></footer>
+
+<button class="btn fab" data-cart>🛒 <span id="cnt2">0</span> · <span id="tot2">₦0</span></button>
+<div class="ov" id="ov"></div>
+<aside class="drawer" id="drawer" aria-label="Your order">
+  <div class="dh"><h3>Your Order</h3><button class="x" id="closeCart" aria-label="Close">×</button></div>
+  <div class="db" id="cartBody"></div>
+  <div class="df"><input id="cName" placeholder="Your name"><input id="cAddr" placeholder="Delivery address or table (e.g. Bodija, Ibadan)">
+    <div class="tot"><span>Total Bill</span><span id="cTot">₦0</span></div><div class="fees">Platform Fees: ₦0 (Direct Store Order)</div>
+    <button class="btn wa" id="send" disabled>Send Order via WhatsApp</button></div>
+</aside>
+
+<div class="modal" id="mgr"><div class="mbox">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><h3>Manager Portal</h3><button class="x" id="mClose" aria-label="Close">×</button></div>
+  <div id="pinView"><p class="hint" style="color:var(--mu);margin-bottom:10px">Enter your 4-digit PIN to edit prices and stock.</p><input id="pin" type="password" inputmode="numeric" maxlength="4" placeholder="PIN"><div class="err" id="pinErr"></div><button class="btn" id="pinGo">Unlock</button></div>
+  <div id="panel" hidden>
+    <p style="color:var(--mu);font-size:.85rem;margin-bottom:8px">Changes save on this device and show on the menu straight away.</p>
+    <div id="mList"></div>
+    <h3 style="margin:20px 0 10px;font-size:1.05rem">Add a new item</h3>
+    <input id="nName" placeholder="Name (e.g. Weekend Party Pack)"><input id="nPrice" type="number" min="0" placeholder="Price in ₦"><select id="nType"><option>Dish</option><option>Drink</option><option>Promo</option></select>
+    <button class="btn" id="nAdd">Add to menu</button>
+  </div>
+</div></div>
+
+<script>
+const KEY='cg_menu_v1',WA='2348130904927';
+const DEF=[
+ {id:'p-chicken',t:'protein',name:'Grilled Chicken Quarter',e:'🍗',price:7000,img:'images/chicken.jpg'},
+ {id:'p-turkey',t:'protein',name:'Spicy Flame-Grilled Turkey',e:'🦃',price:8500,img:'images/bbq.jpg'},
+ {id:'p-catfish',t:'protein',name:'Whole Grilled Catfish',e:'🐟',price:6500,img:'images/catfish.jpg'},
+ {id:'p-asun',t:'protein',name:'Peppered Asun / Gizzard',e:'🍢',price:4500,img:'images/skewers.jpg'},
+ {id:'s-jollof',t:'sig',name:'Party Jollof Rice',desc:'A classic Nigerian party jollof with succulent chicken.',price:7000,img:'images/jollof.jpg'},
+ {id:'s-catfish',t:'sig',name:'Grilled Catfish',desc:'Whole catfish grilled to perfection with spicy pepper sauce.',price:6500,img:'images/catfish.jpg'},
+ {id:'s-bbq',t:'sig',name:'BBQ Meat Platter',desc:'A mouthwatering mix of premium grilled meats.',price:7500,img:'images/bbq.jpg'},
+ {id:'s-gizzard',t:'sig',name:'Peppered Gizzard Skewers',desc:'Spicy peppered gizzard, charred on skewers.',price:4500,img:'images/skewers.jpg'}];
+const SIDES=[{id:'yam',name:'Crispy Fried Yam Chips',e:'🍠'},{id:'fries',name:'French Fries',e:'🍟',img:'images/fries.jpg'},{id:'jollof',name:'Smoky Party Jollof',e:'🍚',img:'images/jollof.jpg'},{id:'dodo',name:'Sweet Fried Plantain (Dodo)',e:'🍌'}];
+const SPICE=[{id:'Mild BBQ',e:'🟢',d:'Smoky and gentle'},{id:'Medium Heat',e:'🟠',d:'A warm kick'},{id:'Extra Hot Yaji',e:'🔴',d:'Full suya fire'}];
+const $=s=>document.querySelector(s),fmt=n=>'₦'+Number(n||0).toLocaleString('en-NG');
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let items;try{items=JSON.parse(localStorage.getItem(KEY))}catch(e){}if(!Array.isArray(items))items=DEF.map(x=>({...x}));
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(items))}catch(e){}};
+let cart=[],sel={p:null,s:[],sp:null};
+const pic=(x,c)=>x.img?`<img src="${x.img}" alt="${esc(x.name)}" loading="lazy">`:`<div class="ph">${x.e||'🔥'}</div>`;
+
+function renderMenu(){
+ $('#menuGrid').innerHTML=items.filter(i=>i.t==='sig'||i.t==='extra').map(i=>`<div class="card">${i.tag?`<span class="tag">${esc(i.tag)}</span>`:''}${i.sold?'<span class="sold">Sold out today</span>':''}${pic(i)}<h3>${esc(i.name)}</h3><p>${esc(i.desc||'Fresh from the grill.')}</p><div class="row"><span class="price">${fmt(i.price)}</span><button class="add" ${i.sold?'disabled':''} data-add="${i.id}" aria-label="Add ${esc(i.name)}">+</button></div></div>`).join('');
+}
+function renderCombo(){
+ const ps=items.filter(i=>i.t==='protein');
+ if(sel.p&&(ps.find(p=>p.id===sel.p)||{}).sold)sel.p=null;
+ $('#o1').innerHTML=ps.map(p=>`<button class="opt ${sel.p===p.id?'on':''}" data-p="${p.id}" ${p.sold?'disabled':''}>${p.sold?'<span class="sold">Sold out today</span>':''}${pic(p)}<b>${p.e} ${esc(p.name)}</b><small>${fmt(p.price)}</small></button>`).join('');
+ $('#o2').innerHTML=SIDES.map(s=>`<button class="opt ${sel.s.includes(s.id)?'on':''}" data-s="${s.id}">${pic(s)}<b>${s.e} ${s.name}</b></button>`).join('');
+ $('#o3').innerHTML=SPICE.map(s=>`<button class="opt ${sel.sp===s.id?'on':''}" data-sp="${s.id}"><span>${s.e}</span><div><b>${s.id}</b><small>${s.d}</small></div></button>`).join('');
+ const p=ps.find(x=>x.id===sel.p);$('#sumPrice').textContent=fmt(p?p.price:0);
+ const miss=!p?'Pick a protein to start':!sel.s.length?'Now pick a side':!sel.sp?'Choose a spice level':p.name+' Combo';
+ $('#sumTxt').textContent=miss;$('#addCombo').disabled=!(p&&sel.s.length&&sel.sp);
+}
+function renderCart(){
+ const n=cart.reduce((a,c)=>a+c.qty,0),t=cart.reduce((a,c)=>a+c.qty*c.price,0);
+ ['#cnt1','#cnt2'].forEach(s=>$(s).textContent=n);$('#tot2').textContent=fmt(t);$('#cTot').textContent=fmt(t);$('#send').disabled=!n;
+ $('#cartBody').innerHTML=cart.length?cart.map((c,i)=>`<div class="li"><b>${esc(c.name)}</b><span>${fmt(c.price*c.qty)}</span>${c.sides?`<small>Sides: ${esc(c.sides)} · Spice: ${esc(c.spice)}</small>`:''}<div class="qty"><button data-q="${i}:-1" aria-label="Less">−</button>${c.qty}<button data-q="${i}:1" aria-label="More">+</button></div><button class="del" data-q="${i}:0">Remove</button></div>`).join(''):'<div class="empty">Your cart is empty.<br>Add something from the menu.</div>';
+}
+function addLine(l){const f=cart.find(c=>c.key===l.key);f?f.qty++:cart.push({...l,qty:1});renderCart();openCart()}
+const openCart=()=>{$('#drawer').classList.add('show');$('#ov').classList.add('show')},closeCart=()=>{$('#drawer').classList.remove('show');$('#ov').classList.remove('show')};
+
+document.addEventListener('click',e=>{
+ const b=e.target.closest('button');if(!b)return;
+ if(b.dataset.cart!==undefined)openCart();
+ if(b.dataset.add){const i=items.find(x=>x.id===b.dataset.add);if(i&&!i.sold)addLine({key:i.id,name:i.name,price:i.price})}
+ if(b.dataset.p){sel.p=b.dataset.p;renderCombo()}
+ if(b.dataset.s){const k=b.dataset.s,x=sel.s.indexOf(k);x>-1?sel.s.splice(x,1):(sel.s.length>=2&&sel.s.shift(),sel.s.push(k));renderCombo()}
+ if(b.dataset.sp){sel.sp=b.dataset.sp;renderCombo()}
+ if(b.dataset.q){const[i,d]=b.dataset.q.split(':').map(Number);if(d===0||cart[i].qty+d<1)cart.splice(i,1);else cart[i].qty+=d;renderCart()}
+});
+$('#closeCart').onclick=$('#ov').onclick=closeCart;
+$('#addCombo').onclick=()=>{
+ const p=items.find(x=>x.id===sel.p),sides=sel.s.map(k=>SIDES.find(s=>s.id===k).name).join(' + ');
+ addLine({key:p.id+'|'+sides+'|'+sel.sp,name:p.name+' Combo',price:p.price,sides,spice:sel.sp});
+};
+$('#send').onclick=()=>{
+ const L='━━━━━━━━━━━━━━━━━━━━',t=cart.reduce((a,c)=>a+c.qty*c.price,0);
+ let m=`${L}\n🔥 CLASSIC GRILLS & EVENTS • DIRECT ORDER 🔥\n${L}\n\n`;
+ cart.forEach(c=>{m+=`• ${c.qty}x ${c.name} (${fmt(c.price*c.qty)})\n`;if(c.sides)m+=`  Sides: ${c.sides}\n  Spice Level: ${c.spice}\n`});
+ m+=`\n💰 Total Bill: ${fmt(t)}\n💳 Platform Fees: ₦0 (Direct Store Order)\n\n${L}\n📍 Customer Delivery/Pickup Details:\nName: ${$('#cName').value.trim()||'[Customer Name]'}\nAddress / Table: ${$('#cAddr').value.trim()||'[Bodija, Ibadan]'}\n${L}\nPlease confirm preparation time and send bank account details.`;
+ window.open(`https://wa.me/${WA}?text=${encodeURIComponent(m)}`,'_blank');
+};
+
+/* Manager portal */
+const PIN='1234';
+$('#mgrBtn').onclick=()=>{$('#mgr').classList.add('show');$('#pinView').hidden=false;$('#panel').hidden=true;$('#pin').value='';$('#pinErr').textContent='';$('#pin').focus()};
+$('#mClose').onclick=()=>$('#mgr').classList.remove('show');
+$('#pinGo').onclick=()=>{if($('#pin').value===PIN){$('#pinView').hidden=true;$('#panel').hidden=false;renderMgr()}else $('#pinErr').textContent='Wrong PIN. Try again.'};
+$('#pin').addEventListener('keydown',e=>{if(e.key==='Enter')$('#pinGo').click()});
+function renderMgr(){
+ $('#mList').innerHTML=items.map(i=>`<div class="mr"><span>${esc(i.name)}${i.tag?` <small style="color:var(--or2)">(${esc(i.tag)})</small>`:''}</span><input type="number" min="0" value="${i.price}" data-mp="${i.id}" aria-label="Price for ${esc(i.name)}"><label><input type="checkbox" ${i.sold?'checked':''} data-ms="${i.id}"> Sold out</label>${i.t==='extra'?`<button class="del" data-md="${i.id}">Delete</button>`:'<span></span>'}</div>`).join('');
+}
+function refresh(){save();renderMenu();renderCombo();cart.forEach(c=>{const b=items.find(i=>c.key.startsWith(i.id));if(b&&!c.sides)c.price=b.price});renderCart()}
+$('#mList').addEventListener('input',e=>{const id=e.target.dataset.mp;if(id){items.find(i=>i.id===id).price=Math.max(0,Number(e.target.value)||0);refresh()}});
+$('#mList').addEventListener('change',e=>{const id=e.target.dataset.ms;if(id){items.find(i=>i.id===id).sold=e.target.checked;refresh()}});
+$('#mList').addEventListener('click',e=>{const id=e.target.dataset.md;if(id){items=items.filter(i=>i.id!==id);refresh();renderMgr()}});
+$('#nAdd').onclick=()=>{const n=$('#nName').value.trim(),p=Number($('#nPrice').value);if(!n||!(p>=0)||$('#nPrice').value==='')return;
+ items.push({id:'x-'+Date.now(),t:'extra',tag:$('#nType').value,name:n,price:p,e:'🔥',desc:'New on the menu.'});$('#nName').value=$('#nPrice').value='';refresh();renderMgr()};
+
+renderMenu();renderCombo();renderCart();
+</script>
+</body>
+</html>
