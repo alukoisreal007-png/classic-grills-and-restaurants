@@ -190,14 +190,14 @@ input,select{width:100%;background:var(--bg);border:1px solid rgba(255,255,255,.
       <p class="addr">43B Awolowo Road, Mokola Hill, Ibadan</p>
       <p class="sub">Fastest dispatch for: Mokola, Total Garden, Secretariat, and UI Gate.</p>
       <div class="foot"><div class="hrs">🕒 Open Daily: 11:30 AM – 11:00 PM</div>
-        <div class="acts"><a href="https://www.google.com/maps/search/?api=1&query=43B+Awolowo+Road+Mokola+Hill+Ibadan" target="_blank" rel="noopener">Open in Maps &nearr;</a><a class="pri" href="#menu">Order Here &rarr;</a></div></div>
+        <div class="acts"><a href="https://www.google.com/maps/search/?api=1&query=43B+Awolowo+Road+Mokola+Hill+Ibadan" target="_blank" rel="noopener">Open in Maps &nearr;</a><a class="pri" href="#menu" data-pick-branch="Mokola Hill (43B Awolowo Rd)">Order Here &rarr;</a></div></div>
     </div>
     <div class="loc">
       <div class="top"><div><span class="badge">Bodija Express Hub</span><h3>📍 New Bodija Hub</h3></div><span style="font-size:1.5rem">🍗</span></div>
       <p class="addr">No. 3B Oluyole Way, Favours Junction, New Bodija</p>
       <p class="sub">(Near 46 Awolowo Ave, Opp. Sluggers). Serves: Old &amp; New Bodija, Ikolaba, and Agbowo.</p>
       <div class="foot"><div class="hrs">🕒 Open Daily: 12:00 PM – 11:00 PM</div>
-        <div class="acts"><a href="https://www.google.com/maps/search/?api=1&query=Oluyole+Way+Favours+Junction+New+Bodija+Ibadan" target="_blank" rel="noopener">Open in Maps &nearr;</a><a class="pri" href="#menu">Order Here &rarr;</a></div></div>
+        <div class="acts"><a href="https://www.google.com/maps/search/?api=1&query=Oluyole+Way+Favours+Junction+New+Bodija+Ibadan" target="_blank" rel="noopener">Open in Maps &nearr;</a><a class="pri" href="#menu" data-pick-branch="New Bodija (Favours Junction)">Order Here &rarr;</a></div></div>
     </div>
   </div>
 </div></section>
@@ -218,7 +218,16 @@ input,select{width:100%;background:var(--bg);border:1px solid rgba(255,255,255,.
 <aside class="drawer" id="drawer" aria-label="Your order">
   <div class="dh"><h3>Your Order</h3><button class="x" id="closeCart" aria-label="Close">×</button></div>
   <div class="db" id="cartBody"></div>
-  <div class="df"><input id="cName" placeholder="Your name"><input id="cAddr" placeholder="Delivery address or table (e.g. Bodija, Ibadan)">
+  <div class="df">
+    <div style="margin-bottom:12px;">
+      <label style="display:block;font-size:.74rem;font-weight:700;color:var(--or);text-transform:uppercase;margin-bottom:6px;letter-spacing:1px">1-Tap Dispatch / Pickup Hub</label>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px" id="bSel">
+        <button type="button" class="opt on" data-branch="Mokola Hill (43B Awolowo Rd)" style="padding:10px 6px;text-align:center;font-size:.8rem;font-weight:700;justify-content:center;align-items:center">📍 Mokola Hill</button>
+        <button type="button" class="opt" data-branch="New Bodija (Favours Junction)" style="padding:10px 6px;text-align:center;font-size:.8rem;font-weight:700;justify-content:center;align-items:center">📍 New Bodija</button>
+      </div>
+    </div>
+    <input id="cName" placeholder="Your name">
+    <input id="cAddr" placeholder="Delivery address or table (e.g. Bodija, Ibadan)">
     <div class="tot"><span>Total Bill</span><span id="cTot">₦0</span></div><div class="fees">Platform Fees: ₦0 (Direct Store Order)</div>
     <button class="btn wa" id="send" disabled>Send Order via WhatsApp</button></div>
 </aside>
@@ -239,21 +248,27 @@ input,select{width:100%;background:var(--bg);border:1px solid rgba(255,255,255,.
 const KEY='cg_menu_v1',WA='2348130904927';
 const DEF=[
  {id:'p-chicken',t:'protein',name:'Grilled Chicken Quarter',e:'🍗',price:7000,img:'images/chicken.jpg'},
- {id:'p-turkey',t:'protein',name:'Spicy Flame-Grilled Turkey',e:'🦃',price:8500,img:'images/bbq.jpg'},
+ {id:'p-turkey',t:'protein',name:'Spicy Flame-Grilled Turkey',e:'🦃',price:8500,img:'images/turkey.jpg'},
  {id:'p-catfish',t:'protein',name:'Whole Grilled Catfish',e:'🐟',price:6500,img:'images/catfish.jpg'},
  {id:'p-asun',t:'protein',name:'Peppered Asun / Gizzard',e:'🍢',price:4500,img:'images/skewers.jpg'},
  {id:'s-jollof',t:'sig',name:'Party Jollof Rice',desc:'A classic Nigerian party jollof with succulent chicken.',price:7000,img:'images/jollof.jpg'},
  {id:'s-catfish',t:'sig',name:'Grilled Catfish',desc:'Whole catfish grilled to perfection with spicy pepper sauce.',price:6500,img:'images/catfish.jpg'},
  {id:'s-bbq',t:'sig',name:'BBQ Meat Platter',desc:'A mouthwatering mix of premium grilled meats.',price:7500,img:'images/bbq.jpg'},
  {id:'s-gizzard',t:'sig',name:'Peppered Gizzard Skewers',desc:'Spicy peppered gizzard, charred on skewers.',price:4500,img:'images/skewers.jpg'}];
-const SIDES=[{id:'yam',name:'Crispy Fried Yam Chips',e:'🍠'},{id:'fries',name:'French Fries',e:'🍟',img:'images/fries.jpg'},{id:'jollof',name:'Smoky Party Jollof',e:'🍚',img:'images/jollof.jpg'},{id:'dodo',name:'Sweet Fried Plantain (Dodo)',e:'🍌'}];
+const SIDES=[
+ {id:'yam',name:'Crispy Fried Yam Chips',e:'🍠',img:'images/yam.jpg'},
+ {id:'fries',name:'French Fries',e:'🍟',img:'images/fries.jpg'},
+ {id:'jollof',name:'Smoky Party Jollof',e:'🍚',img:'images/jollof.jpg'},
+ {id:'dodo',name:'Sweet Fried Plantain (Dodo)',e:'🍌',img:'images/dodo.jpg'}];
 const SPICE=[{id:'Mild BBQ',e:'🟢',d:'Smoky and gentle'},{id:'Medium Heat',e:'🟠',d:'A warm kick'},{id:'Extra Hot Yaji',e:'🔴',d:'Full suya fire'}];
 const $=s=>document.querySelector(s),fmt=n=>'₦'+Number(n||0).toLocaleString('en-NG');
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-let items;try{items=JSON.parse(localStorage.getItem(KEY))}catch(e){}if(!Array.isArray(items))items=DEF.map(x=>({...x}));
+let stored;try{stored=JSON.parse(localStorage.getItem(KEY))}catch(e){}
+let items=DEF.map(d=>{const o=Array.isArray(stored)?stored.find(x=>x.id===d.id):null;return o?{...d,price:(typeof o.price==='number'?o.price:d.price),sold:!!o.sold}:{...d}});
+if(Array.isArray(stored)){stored.filter(x=>x.t==='extra').forEach(x=>items.push(x));}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(items))}catch(e){}};
-let cart=[],sel={p:null,s:[],sp:null};
-const pic=(x,c)=>x.img?`<img src="${x.img}" alt="${esc(x.name)}" loading="lazy">`:`<div class="ph">${x.e||'🔥'}</div>`;
+let cart=[],sel={p:null,s:[],sp:null},branch='Mokola Hill (43B Awolowo Rd)';
+const pic=(x,c)=>x.img?`<img src="${x.img}" alt="${esc(x.name)}" loading="lazy" onerror="this.onerror=null;this.src='images/bbq.jpg'">`:`<div class="ph">${x.e||'🔥'}</div>`;
 
 function renderMenu(){
  $('#menuGrid').innerHTML=items.filter(i=>i.t==='sig'||i.t==='extra').map(i=>`<div class="card">${i.tag?`<span class="tag">${esc(i.tag)}</span>`:''}${i.sold?'<span class="sold">Sold out today</span>':''}${pic(i)}<h3>${esc(i.name)}</h3><p>${esc(i.desc||'Fresh from the grill.')}</p><div class="row"><span class="price">${fmt(i.price)}</span><button class="add" ${i.sold?'disabled':''} data-add="${i.id}" aria-label="Add ${esc(i.name)}">+</button></div></div>`).join('');
@@ -277,7 +292,15 @@ function addLine(l){const f=cart.find(c=>c.key===l.key);f?f.qty++:cart.push({...
 const openCart=()=>{$('#drawer').classList.add('show');$('#ov').classList.add('show')},closeCart=()=>{$('#drawer').classList.remove('show');$('#ov').classList.remove('show')};
 
 document.addEventListener('click',e=>{
- const b=e.target.closest('button');if(!b)return;
+ const b=e.target.closest('button, a[data-pick-branch]');if(!b)return;
+ if(b.dataset.pickBranch){
+   branch=b.dataset.pickBranch;
+   document.querySelectorAll('#bSel button').forEach(x=>x.classList.toggle('on',x.dataset.branch===branch));
+ }
+ if(b.dataset.branch){
+   branch=b.dataset.branch;
+   document.querySelectorAll('#bSel button').forEach(x=>x.classList.toggle('on',x.dataset.branch===branch));
+ }
  if(b.dataset.cart!==undefined)openCart();
  if(b.dataset.add){const i=items.find(x=>x.id===b.dataset.add);if(i&&!i.sold)addLine({key:i.id,name:i.name,price:i.price})}
  if(b.dataset.p){sel.p=b.dataset.p;renderCombo()}
@@ -294,7 +317,7 @@ $('#send').onclick=()=>{
  const L='━━━━━━━━━━━━━━━━━━━━',t=cart.reduce((a,c)=>a+c.qty*c.price,0);
  let m=`${L}\n🔥 CLASSIC GRILLS & EVENTS • DIRECT ORDER 🔥\n${L}\n\n`;
  cart.forEach(c=>{m+=`• ${c.qty}x ${c.name} (${fmt(c.price*c.qty)})\n`;if(c.sides)m+=`  Sides: ${c.sides}\n  Spice Level: ${c.spice}\n`});
- m+=`\n💰 Total Bill: ${fmt(t)}\n💳 Platform Fees: ₦0 (Direct Store Order)\n\n${L}\n📍 Customer Delivery/Pickup Details:\nName: ${$('#cName').value.trim()||'[Customer Name]'}\nAddress / Table: ${$('#cAddr').value.trim()||'[Bodija, Ibadan]'}\n${L}\nPlease confirm preparation time and send bank account details.`;
+ m+=`\n💰 Total Bill: ${fmt(t)}\n💳 Platform Fees: ₦0 (Direct Store Order)\n\n${L}\n📍 Order Routing & Customer Details:\nDispatch Hub: ${branch}\nName: ${$('#cName').value.trim()||'[Customer Name]'}\nAddress / Table: ${$('#cAddr').value.trim()||'[Bodija, Ibadan]'}\n${L}\nPlease confirm preparation time and send bank account details.`;
  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(m)}`,'_blank');
 };
 
