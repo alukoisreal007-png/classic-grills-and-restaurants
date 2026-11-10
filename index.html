@@ -53,8 +53,8 @@ section{padding:64px 0}
 .add{width:42px;height:42px;border-radius:50%;border:1px solid var(--or);background:transparent;color:var(--or);font-size:1.4rem;display:grid;place-items:center;line-height:1}
 .add:hover:not(:disabled){background:var(--or);color:#fff}
 .add:disabled{opacity:.35;cursor:not-allowed}
-.tag{position:absolute;top:20px;left:20px;background:var(--or);color:#fff;font-size:.68rem;font-weight:700;padding:3px 8px;border-radius:4px}
-.sold{position:absolute;top:50%;left:50%;transform:translate(-50%,-70%) rotate(-10deg);background:#d11a1a;color:#fff;font-weight:800;font-size:.8rem;padding:6px 12px;border-radius:4px;border:2px solid #fff;white-space:nowrap;z-index:2}
+.card.out{opacity:.5}
+.card.out img,.card.out .ph{filter:grayscale(60%)}
 .combo{background:var(--card);border-top:1px solid var(--ln);border-bottom:1px solid var(--ln)}
 .step{margin-bottom:34px}.step h3{font-size:1.2rem;margin-bottom:4px}.step .hint{color:var(--mu);font-size:.85rem;margin-bottom:14px}
 .opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px}
@@ -62,11 +62,9 @@ section{padding:64px 0}
 .opt img,.opt .ph{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;font-size:2.6rem}
 .opt b{font-size:.86rem;padding:0 4px;line-height:1.25}.opt small{color:var(--mu);padding:0 4px 4px;font-size:.78rem}
 .opt:hover{border-color:rgba(255,107,0,.5)}
-.opt.on{border-color:var(--or);box-shadow:0 0 0 3px rgba(255,107,0,.2)}
-.opt.on::after{content:"✓";position:absolute;top:14px;right:14px;width:24px;height:24px;border-radius:50%;background:var(--or);color:#fff;display:grid;place-items:center;font-weight:800;font-size:.85rem}
+.opt.on{border-color:var(--or);box-shadow:0 0 0 2px var(--or);background:#261b12}
 .opt:disabled{opacity:.45;cursor:not-allowed}
 .spice .opt{flex-direction:row;align-items:center;gap:10px;padding:16px;font-size:1.6rem}.spice .opt div{display:flex;flex-direction:column}
-.spice .opt.on::after{top:50%;transform:translateY(-50%)}
 .bar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;background:var(--bg);border:1px solid var(--ln);border-radius:14px;padding:16px 20px}
 .bar span{color:var(--mu);font-size:.88rem}.bar strong{font-size:1.4rem;display:block;color:var(--tx)}
 .story .wrap{display:grid;grid-template-columns:1fr 1.2fr;gap:36px;align-items:center}
@@ -186,14 +184,14 @@ input,select{width:100%;background:var(--bg);border:1px solid rgba(255,255,255,.
     <p style="font-size:.95rem">Piping hot charcoal delivery across Bodija, Mokola, Secretariat, and UI in under 35 minutes.</p></div>
   <div class="loc-grid">
     <div class="loc">
-      <div class="top"><div><span class="badge">Main Kitchen &bull; High Volume</span><h3>📍 Mokola Hill Hub</h3></div><span style="font-size:1.5rem">🔥</span></div>
+      <div class="top"><div><small style="color:var(--or2);font-weight:700;text-transform:uppercase;font-size:.72rem;letter-spacing:1px;display:block;margin-bottom:2px">Main Kitchen &bull; High Volume</small><h3>📍 Mokola Hill Hub</h3></div><span style="font-size:1.5rem">🔥</span></div>
       <p class="addr">43B Awolowo Road, Mokola Hill, Ibadan</p>
       <p class="sub">Fastest dispatch for: Mokola, Total Garden, Secretariat, and UI Gate.</p>
       <div class="foot"><div class="hrs">🕒 Open Daily: 11:30 AM – 11:00 PM</div>
         <div class="acts"><a href="https://www.google.com/maps/search/?api=1&query=43B+Awolowo+Road+Mokola+Hill+Ibadan" target="_blank" rel="noopener">Open in Maps &nearr;</a><a class="pri" href="#menu" data-pick-branch="Mokola Hill (43B Awolowo Rd)">Order Here &rarr;</a></div></div>
     </div>
     <div class="loc">
-      <div class="top"><div><span class="badge">Bodija Express Hub</span><h3>📍 New Bodija Hub</h3></div><span style="font-size:1.5rem">🍗</span></div>
+      <div class="top"><div><small style="color:var(--or2);font-weight:700;text-transform:uppercase;font-size:.72rem;letter-spacing:1px;display:block;margin-bottom:2px">Bodija Express Hub</small><h3>📍 New Bodija Hub</h3></div><span style="font-size:1.5rem">🍗</span></div>
       <p class="addr">No. 3B Oluyole Way, Favours Junction, New Bodija</p>
       <p class="sub">(Near 46 Awolowo Ave, Opp. Sluggers). Serves: Old &amp; New Bodija, Ikolaba, and Agbowo.</p>
       <div class="foot"><div class="hrs">🕒 Open Daily: 12:00 PM – 11:00 PM</div>
@@ -271,12 +269,12 @@ let cart=[],sel={p:null,s:[],sp:null},branch='Mokola Hill (43B Awolowo Rd)';
 const pic=(x,c)=>x.img?`<img src="${x.img}" alt="${esc(x.name)}" loading="lazy" onerror="this.onerror=null;this.src='images/bbq.jpg'">`:`<div class="ph">${x.e||'🔥'}</div>`;
 
 function renderMenu(){
- $('#menuGrid').innerHTML=items.filter(i=>i.t==='sig'||i.t==='extra').map(i=>`<div class="card">${i.tag?`<span class="tag">${esc(i.tag)}</span>`:''}${i.sold?'<span class="sold">Sold out today</span>':''}${pic(i)}<h3>${esc(i.name)}</h3><p>${esc(i.desc||'Fresh from the grill.')}</p><div class="row"><span class="price">${fmt(i.price)}</span><button class="add" ${i.sold?'disabled':''} data-add="${i.id}" aria-label="Add ${esc(i.name)}">+</button></div></div>`).join('');
+ $('#menuGrid').innerHTML=items.filter(i=>i.t==='sig'||i.t==='extra').map(i=>`<div class="card ${i.sold?'out':''}">${pic(i)}<h3>${esc(i.name)}</h3><p>${esc(i.desc||'Fresh from the grill.')}</p><div class="row"><span class="price">${fmt(i.price)}</span>${i.sold?'<span style="color:#f87171;font-size:.78rem;font-weight:700">Sold out today</span>':`<button class="add" data-add="${i.id}" aria-label="Add ${esc(i.name)}">+</button>`}</div></div>`).join('');
 }
 function renderCombo(){
  const ps=items.filter(i=>i.t==='protein');
  if(sel.p&&(ps.find(p=>p.id===sel.p)||{}).sold)sel.p=null;
- $('#o1').innerHTML=ps.map(p=>`<button class="opt ${sel.p===p.id?'on':''}" data-p="${p.id}" ${p.sold?'disabled':''}>${p.sold?'<span class="sold">Sold out today</span>':''}${pic(p)}<b>${p.e} ${esc(p.name)}</b><small>${fmt(p.price)}</small></button>`).join('');
+ $('#o1').innerHTML=ps.map(p=>`<button class="opt ${sel.p===p.id?'on':''} ${p.sold?'out':''}" data-p="${p.id}" ${p.sold?'disabled':''}>${pic(p)}<b>${p.e} ${esc(p.name)}</b><small>${p.sold?'<span style="color:#f87171">Sold out</span>':fmt(p.price)}</small></button>`).join('');
  $('#o2').innerHTML=SIDES.map(s=>`<button class="opt ${sel.s.includes(s.id)?'on':''}" data-s="${s.id}">${pic(s)}<b>${s.e} ${s.name}</b></button>`).join('');
  $('#o3').innerHTML=SPICE.map(s=>`<button class="opt ${sel.sp===s.id?'on':''}" data-sp="${s.id}"><span>${s.e}</span><div><b>${s.id}</b><small>${s.d}</small></div></button>`).join('');
  const p=ps.find(x=>x.id===sel.p);$('#sumPrice').textContent=fmt(p?p.price:0);
