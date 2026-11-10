@@ -114,20 +114,21 @@ footer h4{font-size:.8rem;letter-spacing:1.5px;margin-bottom:12px}footer li{list
 .copy{margin-top:34px;padding-top:18px;border-top:1px solid rgba(255,255,255,.08);color:var(--mu);font-size:.8rem}
 .fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:40;box-shadow:0 8px 30px rgba(255,107,0,.4);padding:14px 20px;border-radius:999px}
 .ov{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:50;display:none}.ov.show{display:block}
-.drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--card);z-index:60;transform:translateX(100%);transition:transform .25s;display:flex;flex-direction:column;border-left:1px solid var(--ln)}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100vw);height:100%;height:100dvh;background:var(--card);z-index:60;transform:translateX(100%);transition:transform .25s ease-out;display:flex;flex-direction:column;border-left:1px solid var(--ln);overflow:hidden}
 .drawer.show{transform:none}
-.dh{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid rgba(255,255,255,.08)}
-.x{background:none;border:none;font-size:1.6rem;color:var(--mu)}
-.db{flex:1;overflow:auto;padding:16px 20px}
+.dh{flex-shrink:0;display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid rgba(255,255,255,.08);background:var(--card);z-index:2}
+.x{background:none;border:none;font-size:1.6rem;color:var(--mu);cursor:pointer;line-height:1}
+.drawer-body{flex:1 1 auto;overflow-y:auto;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column;overscroll-behavior:contain}
+.db{padding:16px 20px;flex-shrink:0}
 .li{display:grid;grid-template-columns:1fr auto;gap:4px 10px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:.9rem}
 .li small{grid-column:1/-1;color:var(--mu)}
 .qty{display:flex;align-items:center;gap:8px;margin-top:6px}.qty button{width:28px;height:28px;border-radius:50%;border:1px solid var(--ln);background:none}
-.df{padding:16px 20px calc(16px + env(safe-area-inset-bottom,0px));border-top:1px solid rgba(255,255,255,.08)}
+.df{margin-top:auto;flex-shrink:0;padding:16px 20px calc(18px + env(safe-area-inset-bottom,0px));border-top:1px solid rgba(255,255,255,.08);background:var(--card)}
 input,select{width:100%;background:var(--bg);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:10px 12px;color:var(--tx);font:inherit;margin-bottom:8px}
 .tot{display:flex;justify-content:space-between;font-weight:700;font-size:1.1rem;margin:8px 0}.fees{color:var(--mu);font-size:.8rem;margin-bottom:12px}
 .wa{width:100%;justify-content:center;background:#25D366;border-color:#25D366;color:#06210f}
 .modal{position:fixed;inset:0;z-index:70;display:none;place-items:center;padding:16px;background:rgba(0,0,0,.7)}.modal.show{display:grid}
-.mbox{background:var(--card);border:1px solid var(--ln);border-radius:14px;width:min(640px,100%);max-height:90vh;overflow:auto;padding:22px}
+.mbox{background:var(--card);border:1px solid var(--ln);border-radius:14px;width:min(640px,100%);max-height:90dvh;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:22px}
 .mr{display:grid;grid-template-columns:1fr 110px auto auto;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:.88rem}
 .mr input{margin:0;padding:8px}
 .mr label{display:flex;gap:6px;align-items:center;font-size:.78rem;color:var(--mu);white-space:nowrap}.mr label input{width:auto;margin:0}
@@ -184,6 +185,16 @@ input,select{width:100%;background:var(--bg);border:1px solid rgba(255,255,255,.
   .mr{grid-template-columns:1fr 90px}
   input,select,textarea{font-size:16px!important}
   button:active,.btn:active,.opt:active{transform:scale(.97)}
+}
+@media(max-height:560px){
+  .dh{padding:10px 16px}
+  .db{padding:10px 16px}
+  .df{padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px))}
+  .df input{padding:7px 10px;margin-bottom:6px;font-size:14px!important}
+  .df #bSel button{padding:6px 4px!important;font-size:.74rem!important}
+  .tot{margin:4px 0;font-size:1rem}
+  .fees{margin-bottom:6px;font-size:.74rem}
+  .wa{padding:10px 14px;font-size:.86rem}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}.reveal{opacity:1!important;transform:none!important}}
 </style>
@@ -307,19 +318,22 @@ input,select{width:100%;background:var(--bg);border:1px solid rgba(255,255,255,.
 <div class="ov" id="ov"></div>
 <aside class="drawer" id="drawer" aria-label="Your order">
   <div class="dh"><h3>Your Order</h3><button class="x" id="closeCart" aria-label="Close">×</button></div>
-  <div class="db" id="cartBody"></div>
-  <div class="df">
-    <div style="margin-bottom:12px;">
-      <label style="display:block;font-size:.74rem;font-weight:700;color:var(--or);text-transform:uppercase;margin-bottom:6px;letter-spacing:1px">1-Tap Dispatch / Pickup Hub</label>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px" id="bSel">
-        <button type="button" class="opt on" data-branch="Mokola Hill (43B Awolowo Rd)" style="padding:10px 6px;text-align:center;font-size:.8rem;font-weight:700;justify-content:center;align-items:center">Mokola Hill</button>
-        <button type="button" class="opt" data-branch="New Bodija (Favours Junction)" style="padding:10px 6px;text-align:center;font-size:.8rem;font-weight:700;justify-content:center;align-items:center">New Bodija</button>
+  <div class="drawer-body">
+    <div class="db" id="cartBody"></div>
+    <div class="df">
+      <div style="margin-bottom:12px;">
+        <label style="display:block;font-size:.74rem;font-weight:700;color:var(--or);text-transform:uppercase;margin-bottom:6px;letter-spacing:1px">1-Tap Dispatch / Pickup Hub</label>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px" id="bSel">
+          <button type="button" class="opt on" data-branch="Mokola Hill (43B Awolowo Rd)" style="padding:10px 6px;text-align:center;font-size:.8rem;font-weight:700;justify-content:center;align-items:center">Mokola Hill</button>
+          <button type="button" class="opt" data-branch="New Bodija (Favours Junction)" style="padding:10px 6px;text-align:center;font-size:.8rem;font-weight:700;justify-content:center;align-items:center">New Bodija</button>
+        </div>
       </div>
+      <input id="cName" placeholder="Your name">
+      <input id="cAddr" placeholder="Delivery address or table (e.g. Bodija, Ibadan)">
+      <div class="tot"><span>Total Bill</span><span id="cTot">₦0</span></div><div class="fees">Platform Fees: ₦0 (Direct Store Order)</div>
+      <button class="btn wa" id="send" disabled>Send Order via WhatsApp</button>
     </div>
-    <input id="cName" placeholder="Your name">
-    <input id="cAddr" placeholder="Delivery address or table (e.g. Bodija, Ibadan)">
-    <div class="tot"><span>Total Bill</span><span id="cTot">₦0</span></div><div class="fees">Platform Fees: ₦0 (Direct Store Order)</div>
-    <button class="btn wa" id="send" disabled>Send Order via WhatsApp</button></div>
+  </div>
 </aside>
 
 <div class="modal" id="mgr"><div class="mbox">
@@ -379,7 +393,7 @@ function renderCart(){
  $('#cartBody').innerHTML=cart.length?cart.map((c,i)=>`<div class="li"><b>${esc(c.name)}</b><span>${fmt(c.price*c.qty)}</span>${c.sides?`<small>Sides: ${esc(c.sides)} · Spice: ${esc(c.spice)}</small>`:''}<div class="qty"><button data-q="${i}:-1" aria-label="Less">−</button>${c.qty}<button data-q="${i}:1" aria-label="More">+</button></div><button class="del" data-q="${i}:0">Remove</button></div>`).join(''):'<div class="empty">Your cart is empty.<br>Add something from the menu.</div>';
 }
 function addLine(l){const f=cart.find(c=>c.key===l.key);f?f.qty++:cart.push({...l,qty:1});renderCart();openCart()}
-const openCart=()=>{$('#drawer').classList.add('show');$('#ov').classList.add('show')},closeCart=()=>{$('#drawer').classList.remove('show');$('#ov').classList.remove('show')};
+const openCart=()=>{$('#drawer').classList.add('show');$('#ov').classList.add('show');document.body.style.overflow='hidden'},closeCart=()=>{$('#drawer').classList.remove('show');$('#ov').classList.remove('show');document.body.style.overflow=''};
 
 document.addEventListener('click',e=>{
  const b=e.target.closest('button, a[data-pick-branch]');if(!b)return;
@@ -429,8 +443,8 @@ $('#nAdd').onclick=()=>{const n=$('#nName').value.trim(),p=Number($('#nPrice').v
 
 /* Mobile nav drawer */
 const mNav=$('#mainNav'),nb=$('#navBackdrop'),nt=$('#navToggle'),nc=$('#navClose');
-function openNav(){if(mNav){mNav.classList.add('open');nb.classList.add('show');nt.setAttribute('aria-expanded','true')}}
-function closeNav(){if(mNav){mNav.classList.remove('open');nb.classList.remove('show');nt.setAttribute('aria-expanded','false')}}
+function openNav(){if(mNav){mNav.classList.add('open');nb.classList.add('show');nt.setAttribute('aria-expanded','true');document.body.style.overflow='hidden'}}
+function closeNav(){if(mNav){mNav.classList.remove('open');nb.classList.remove('show');nt.setAttribute('aria-expanded','false');document.body.style.overflow=''}}
 if(nt)nt.onclick=openNav;
 if(nc)nc.onclick=closeNav;
 if(nb)nb.onclick=closeNav;
